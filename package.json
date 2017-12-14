@@ -1,0 +1,25 @@
+{
+  "name": "hcr",
+  "version": "1.0.0",
+  "description": "Hearthstone Card Ranker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "hearthstone",
+    "card",
+    "ranker"
+  ],
+  "author": "Jean",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
+    "unirest": "^0.5.1"
+  }
+}
