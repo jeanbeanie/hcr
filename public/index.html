@@ -20,12 +20,8 @@
 	<div class="container">
 		<h1>Hearthstone Card Ranker</h1>
 		<div><span class="label label-info">{{cards.length}}</span> cards total.</div>
-		<div ng-repeat="cardSet in cardSets">
-			<div ng-repeat="cards in cardSet">
-				<div ng-repeat="card in cards">
-					<li >{{card.name}}</li>
-				</div>
-			</div>
+		<div ng-repeat="card in cards">
+			<li>{{card.name}}</li>
 		</div>
 	</div>
 </body>
