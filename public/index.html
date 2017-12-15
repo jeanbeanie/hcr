@@ -4,25 +4,73 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HCR</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+		
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-    <style>
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+    
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script> 
+  <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
     </style>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="core.js"></script> 
 </head>
 
 <body ng-controller="mainController">
 	<div class="container">
 		<h1>Hearthstone Card Ranker</h1>
-		<h2><span class="label label-info">{{cards.length}}</span> cards total.</h2>
-		<div ng-repeat="card in cards">
-			<li>{{card.name}}</li>
-		</div>
+    
+		<form class="form-inline">
+			<div class="form-group">
+			<strong><span class="label label-info">{{cards.length}}</span> cards total.</strong>
+				<label for="tempoFilter">Filter cards by deck speed : </label>
+				<select name="tempoFilter">
+					<option value="all">All</option>
+					<option value="aggro">Aggro</option>
+					<option value="mid">Mid</option>
+					<option value="control">Control</option>
+				</select>
+
+				<label for="classFilter">Filter cards by deck class : </label>
+				<select name="classFilter">
+					<option value="all">All</option>
+					<option value="mage">Mage</option>
+					<option value="priest">Priest</option>
+					<option value="warlock">Warlock</option>
+				</select>
+			</div>
+		</form>
+		
+		<div class="row">
+    	<div class="col-md-3"  ng-repeat="card in cards">
+        <div style="border:1px solid grey">
+          <div>{{card.name}}</div>
+          {{0}} total votes.
+          <div class="btn-group" role="group" aria-label="...">
+            <button class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up">
+              </span>
+            </button>
+            <button class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down">
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 	</div>
 </body>
 </html>
