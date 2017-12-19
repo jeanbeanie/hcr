@@ -59,7 +59,7 @@
           <div>{{card.name}}</div>
           {{0}} total votes.
           <div class="btn-group" role="group" aria-label="...">
-            <button class="btn btn-default">
+            <button ng-click="upVoteCard(card.cardId)" class="btn btn-default">
               <span class="glyphicon glyphicon-arrow-up">
               </span>
             </button>
