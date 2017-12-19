@@ -21,16 +21,14 @@
     
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
     <script src="core.js"></script> 
-  <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-    </style>
 
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 
 <body ng-controller="mainController">
 	<div class="container">
-		<h1>Hearthstone Card Ranker</h1>
+		<h1 id="site-title">Hearthstone Card Ranker</h1>
     
 		<form class="form-inline">
 			<div class="form-group">
@@ -55,7 +53,7 @@
 		
 		<div class="row">
     	<div class="col-md-3"  ng-repeat="card in cards">
-        <div style="border:1px solid grey">
+        <div class="card-container">
           <div>{{card.name}}</div>
           {{0}} total votes.
           <div class="btn-group" role="group" aria-label="...">
