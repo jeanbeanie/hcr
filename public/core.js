@@ -13,6 +13,7 @@ function mainController($scope, $http) {
         angular.forEach(cards, function(card) {
           $scope.cards.push(card);
         });
+        console.log($scope.cards[0]);
       })
       .error(function(err) {
         console.log('Error getting cards through GET /api/cards : ' + err);

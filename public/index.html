@@ -4,20 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HCR</title>
-	<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-		
+	
+  <script src="https://use.fontawesome.com/9e352e2b25.js"></script>
 
 	 <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
     <script src="core.js"></script> 
@@ -28,47 +24,71 @@
 
 <body ng-controller="mainController">
 	<div class="container">
-		<h1 id="site-title">Hearthstone Card Ranker</h1>
-    
-		<form class="form-inline">
-			<div class="form-group">
-			<strong><span class="label label-info">{{cards.length}}</span> cards total.</strong>
-				<label for="tempoFilter">Filter cards by deck speed : </label>
-				<select name="tempoFilter">
-					<option value="all">All</option>
-					<option value="aggro">Aggro</option>
-					<option value="mid">Mid</option>
-					<option value="control">Control</option>
-				</select>
-
-				<label for="classFilter">Filter cards by deck class : </label>
-				<select name="classFilter">
-					<option value="all">All</option>
-					<option value="mage">Mage</option>
-					<option value="priest">Priest</option>
-					<option value="warlock">Warlock</option>
-				</select>
-			</div>
-		</form>
-		
-		<div class="row">
-    	<div class="col-md-3"  ng-repeat="card in cards">
-        <div class="card-container">
-          <div>{{card.name}}</div>
-          {{0}} total votes.
-          <div class="btn-group" role="group" aria-label="...">
-            <button ng-click="upVoteCard(card.cardId)" class="btn btn-default">
-              <span class="glyphicon glyphicon-arrow-up">
-              </span>
-            </button>
-            <button class="btn btn-default">
-              <span class="glyphicon glyphicon-arrow-down">
-              </span>
-            </button>
-          </div>
-        </div>
+    <div class="row" >
+      <h1 class="mx-auto" id="site-title">Hearthstone Card Ranker</h1>
+    </div>
+    <div class="row info-row mx-auto">
+      Vote on and browse the best cards for your next deck, filter by mechanics or tempo.
+      <div class="badge badge-light total-cards-badge">
+        {{cards.length}} cards total.
       </div>
     </div>
+        
+    <div class="row info-row mx-auto">
+    
+      <form class="form-inline">
+        <div class="form-group">
+            <label for="tempoFilter"> Filter cards by deck speed : </label>
+            <select name="tempoFilter">
+              <option value="all">All</option>
+              <option value="aggro">Aggro</option>
+              <option value="mid">Mid</option>
+              <option value="control">Control</option>
+            </select>
+
+            <label for="classFilter">Filter cards by deck class : </label>
+            <select name="classFilter">
+              <option value="all">All</option>
+              <option value="mage">Mage</option>
+              <option value="priest">Priest</option>
+              <option value="warlock">Warlock</option>
+            </select>
+        </div>
+      </form>
+    </div>
+    <hr/>
+		
+		<div class="row mx-auto" id="card-row">
+    	<div class="col-md-3"  ng-repeat="card in cards">
+        <div class="card-container">
+          <img class="card-img mw-100" ng-src="{{card.img}}" />
+          <br/>
+          <div class="card-votes-container container mx-auto">
+            <div class="btn-group card-votes-button-group row" role="group" aria-label="...">
+              <button ng-click="upVoteCard(card.cardId)" class="btn btn-default">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                <label>{{0}}</label>
+              </button>
+              <button class="btn btn-default">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                <label>{{0}}</label>
+              </button>
+            <!-- end of button group -->
+            </div>
+            <br/>
+            <div class="row mx-auto">
+              <label class="badge badge-light">{{0}} total votes.</label>
+            <!-- end of total votes -->
+            </div><br/>
+            <!-- end of card-votes-container -->
+          </div>
+          <!-- end of card-container-->
+        </div>
+        <!-- end of col-md-3 card columns -->
+      </div>
+      <!-- end of main card iterating row -->
+    </div>
+    <!-- end of container -->
 	</div>
 </body>
 </html>
