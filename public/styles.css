@@ -3,7 +3,8 @@ html{
 }
 body{ 
   padding-top:1rem; 
-  background-color:rosybrown;
+  background-color:#461414;
+  color: antiquewhite;
 }
 #site-title{
   font-size: 3rem;
@@ -12,7 +13,7 @@ body{
   -webkit-text-stroke-color: saddlebrown;
 }
 .card-container{
-	border: 1px solid rosybrown;
+	border: 1px solid #461414;
 }
 .total-cards-badge{
   margin-left: 1rem;

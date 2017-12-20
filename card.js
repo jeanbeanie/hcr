@@ -1,4 +1,5 @@
 // card.js
+const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const url = require('./secrets').MONGODB_URL;
@@ -19,6 +20,7 @@ module.exports = {
             populateDB(client); 
           }
           else {
+            console.log('sending saved cards...');
             callback(cards);
           }
         });
@@ -26,15 +28,26 @@ module.exports = {
     })
   },
 
-  getFiltered: function(){
-
+  upVote: function(id, callback){
+    MongoClient.connect(url, function(err, client){
+      const db = client.db('card');
+      db.collection('card').update(
+        { "cardId": id },
+        { "$inc": { "upVotes": 1}}
+      )
+    })
+    callback(true);
   },
 
-  upVote: function(){
-
-  },
-
-  downVote: function(){
+  downVote: function(id, callback){
+    MongoClient.connect(url, function(err, client){
+      const db = client.db('card');
+      db.collection('card').update(
+        { "cardId": id },
+        { "$inc": { "downVotes": 1}}
+      )
+    })
+    callback(true);
 
   },
   
@@ -67,20 +80,18 @@ const getCardSetsFromAPI = function(callback){
 
 const populateDB = function(client){
       getCardSetsFromAPI(function(cards){        
-        saveCardsToDB(cards, client);
+        saveAllCards(cards, client);
       })
 }
 
-const saveCardsToDB = function(cards, client){
+const saveAllCards = function(cards, client){
   console.log('Checking if cards exist in db, looping through cards now...');
   
   for(let card in cards){    
     const cardId = cards[card].cardId
     if( findCardByCardId( cardId, client ) == null || undefined){
       saveCardToDB(cards[card], client)
-    } else {
-      //
-    }
+    }   
   }
 }
 

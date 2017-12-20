@@ -67,17 +67,17 @@
             <div class="btn-group card-votes-button-group row" role="group" aria-label="...">
               <button ng-click="upVoteCard(card.cardId)" class="btn btn-default">
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                <label>{{0}}</label>
+                <label>{{card.upVotes || 0}}</label>
               </button>
-              <button class="btn btn-default">
+              <button ng-click="downVoteCard(card.cardId)" class="btn btn-default">
                 <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                <label>{{0}}</label>
+                <label>{{card.downVotes || 0}}</label>
               </button>
             <!-- end of button group -->
             </div>
             <br/>
             <div class="row mx-auto">
-              <label class="badge badge-light">{{0}} total votes.</label>
+              <label class="badge badge-light">{{(card.upVotes + card.downVotes) || 0}} total votes.</label>
             <!-- end of total votes -->
             </div><br/>
             <!-- end of card-votes-container -->
