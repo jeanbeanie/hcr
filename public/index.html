@@ -65,11 +65,11 @@
           <br/>
           <div class="card-votes-container container mx-auto">
             <div class="btn-group card-votes-button-group row" role="group" aria-label="...">
-              <button ng-click="upVoteCard(card.cardId)" class="btn btn-default">
+              <button ng-click="upVoteCard(card)" class="btn btn-default">
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                 <label>{{card.upVotes || 0}}</label>
               </button>
-              <button ng-click="downVoteCard(card.cardId)" class="btn btn-default">
+              <button ng-click="downVoteCard(card)" class="btn btn-default">
                 <i class="fa fa-arrow-down" aria-hidden="true"></i>
                 <label>{{card.downVotes || 0}}</label>
               </button>

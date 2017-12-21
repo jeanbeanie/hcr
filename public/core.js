@@ -22,22 +22,34 @@ function mainController($scope, $http) {
       console.log('Finished loading cards.');
   }
 
-  $scope.upVoteCard = function(cardId){
-    $http.post('/api/card/' + cardId + '/upVote')
+  $scope.upVoteCard = function(card){
+    var id = card.cardId;
+    $http.post('/api/card/' + id + '/upVote')
       .success(function(data) {
+        if( card.upVotes == undefined || null ){
+          card.upVotes = 1;
+        }
+        else{
+          card.upVotes += 1;
+        }
         console.log('Upvoted card.');
-        getCardData();
       })
       .error(function(err){
         console.log('Error upvoting card, : ' + err);
       })
   }
   
-  $scope.downVoteCard = function(cardId){
-    $http.post('/api/card/' + cardId + '/downVote')
+  $scope.downVoteCard = function(card){
+    var id = card.cardId;
+    $http.post('/api/card/' + id + '/downVote')
       .success(function(data) {
+        if( card.downVotes == undefined || null ){
+          card.downVotes = 1;
+        }
+        else{
+          card.downVotes += 1;
+        }
         console.log('Downvoted card.');
-        getCardData();
       })
       .error(function(err){
         console.log('Error downvoting card, : ' + err);
